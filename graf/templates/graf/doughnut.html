@@ -1,0 +1,70 @@
+<h1>Koláčový graf</h1>
+{% extends 'base.html'%}
+{%block scripts%}
+<script>
+$(document).ready(function(){
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',  //doughnut nebo pie (oba mají stejné nastavení)
+            data: {
+
+                datasets: [{
+                    data: [{%for data in qs%}{{data.pocet_objektu}},{%endfor%}],
+                    backgroundColor: [{%for data in qs%}'{{data.color}}',{%endfor%}],
+                    borderColor: [{%for data in qs%}'{{data.borderColor}}',{%endfor%}],
+                    borderWidth: 2 //šířka mezery, základ je 1, 0 = bez mezery
+
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+});
+    });
+
+</script>
+{%endblock scripts%}
+
+{%block content%}
+<div>
+    <canvas id="myChart" width="400" height="150"></canvas>
+
+    {%for data in qs%}
+    {%endfor%}
+<table border="4">
+    {% for data in qs %}
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <form action="upravit_objekt/{{ data.id }}" method="post">
+        {% csrf_token %}
+        <td><input name="jmeno_objektu" value="{{data.jmeno_objektu}}"></td>
+        <td><input name="pocet_objektu" value="{{data.pocet_objektu}}"></td>
+        <td><input name="color" type="color" value="{{data.color}}"></td>
+        <td><input name="borderColor" type="color" value="{{data.borderColor}}"></td>
+        <td><input type="submit" value="Změnit"></td>
+        </form>
+        <td><a href="odstranit/{{data.id}}/">Odstranit</a></td>
+    </tr>
+    {% endfor %}
+    <tr>
+            <form action="pridat_objekt/" method="post">
+        {% csrf_token %}
+        <td><input name="jmeno_objektu" value="Jméno objektu"></td>
+        <td><input name="pocet_objektu" value="Počet objektů"></td>
+        <td><input name="color" type="color" value="#FF0000"></td>
+        <td><input name="borderColor" type="color" value="#FF0000"></td>
+        <td><input type="submit" value="Přidat objekt"></td>
+        </form>
+    </tr>
+    </table>
+
+</div>
+
+{%endblock content%}

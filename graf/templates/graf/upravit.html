@@ -1,0 +1,31 @@
+<h1>Přidat objekt</h1>
+{% extends 'base.html'%}
+{%block content%}
+
+<form action="pridat_objekt/" method="post">
+{% csrf_token %}
+Jméno objektu:<br>
+<input name="jmeno_objektu">
+<br><br>
+Počet objektů:<br>
+<input name="pocet_objektu">
+<br><br>
+Barva:
+<input name="color" type="color" value="#ff0000"><br><br>
+Barva okraje:
+<input name="borderColor" type="color" format="hex" value="#ff0000"><br><br>
+<input type="submit" value="Přidat objekt">
+</form>
+
+<table border="4">
+    {% for data in qs %}
+    <tr>
+        <td><input name="jmeno_objektu" value="{{data.jmeno_objektu}}"></td>
+        <td><input name="pocet_objektu" value="{{data.pocet_objektu}}"></td>
+        <td><a href="/upravit">Upravit hodnoty</a></td>
+        <td><a href="odstranit/{{data.id}}/">Odstranit</a></td>
+    </tr>
+    {% endfor %}
+    </table>
+
+{%endblock content%}
