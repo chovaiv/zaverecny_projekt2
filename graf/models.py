@@ -7,7 +7,5 @@ class Test(models.Model):
     color = ColorField(default='#000000')
     borderColor = ColorField(default='#FF00FF')
 
-
-
     def __str__(self):
-        return "{}-{}".format(self.jmeno_objektu, self.pocet_objektu)
+        return "{} - {}".format(self.jmeno_objektu, self.pocet_objektu, self.color, self.borderColor)
