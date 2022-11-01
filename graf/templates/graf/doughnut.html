@@ -1,6 +1,10 @@
 <h1>Koláčový graf</h1>
 {% extends 'base.html'%}
+
+
 {%block scripts%}
+
+
 <script>
 $(document).ready(function(){
 
@@ -31,21 +35,36 @@ $(document).ready(function(){
 {%endblock scripts%}
 
 {%block content%}
+<style>
+table, th, tr, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+input {
+      border: none;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+</style>
 <div>
     <canvas id="myChart" width="400" height="150"></canvas>
 
     {%for data in qs%}
     {%endfor%}
+
 <table border="4">
     {% for data in qs %}
     <tr>
-        <td></td>
     </tr>
     <tr>
         <form action="upravit_objekt/{{ data.id }}" method="post">
         {% csrf_token %}
         <td><input name="jmeno_objektu" value="{{data.jmeno_objektu}}"></td>
-        <td><input name="pocet_objektu" value="{{data.pocet_objektu}}"></td>
+        <td><input name="pocet_objektu" type="number" value="{{data.pocet_objektu}}"></td>
         <td><input name="color" type="color" value="{{data.color}}"></td>
         <td><input name="borderColor" type="color" value="{{data.borderColor}}"></td>
         <td><input type="submit" value="Změnit"></td>
@@ -56,8 +75,8 @@ $(document).ready(function(){
     <tr>
             <form action="pridat_objekt/" method="post">
         {% csrf_token %}
-        <td><input name="jmeno_objektu" value="Jméno objektu"></td>
-        <td><input name="pocet_objektu" value="Počet objektů"></td>
+        <td><input name="jmeno_objektu" placeholder="Jméno objektu"></td>
+        <td><input name="pocet_objektu" type="number" placeholder="Počet objektů"></td>
         <td><input name="color" type="color" value="#FF0000"></td>
         <td><input name="borderColor" type="color" value="#FF0000"></td>
         <td><input type="submit" value="Přidat objekt"></td>
