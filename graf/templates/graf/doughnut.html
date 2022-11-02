@@ -83,7 +83,19 @@ button:focus {
         </form>
     </tr>
     </table>
+<script>
+        function download() {
+var download = document.getElementById("download");
+var image = document.getElementById("myChart").toDataURL("image/png")
+    .replace("image/png", "image/octet-stream");
+download.setAttribute("href", image);
+//download.setAttribute("download","archive.png");
+}
 
+    </script>
+<a id="download" download="graf.png">
+<button type="button" onClick="download()">Stáhnout jako png</button>
+</a>
 </div>
 
 {%endblock content%}
