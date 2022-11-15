@@ -1,4 +1,3 @@
-<h1>Koláčový graf</h1>
 {% extends 'base.html'%}
 
 
@@ -10,7 +9,7 @@ $(document).ready(function(){
 
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
-            type: 'doughnut',  //doughnut nebo pie (oba mají stejné nastavení)
+            type: 'pie',  //doughnut nebo pie (oba mají stejné nastavení)
             data: {
 
                 datasets: [{
@@ -50,6 +49,8 @@ button:focus {
     outline: none;
 }
 </style>
+<h1>Koláčový graf</h1>
+
 <div>
     <canvas id="myChart" width="400" height="150"></canvas>
 
