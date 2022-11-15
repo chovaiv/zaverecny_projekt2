@@ -4,6 +4,10 @@ from django.views.generic import TemplateView
 from .models import Test
 from django.template import loader
 
+def index(request):
+  template = loader.get_template('base.html')
+  return HttpResponse(template.render())
+
 class TestChartView(TemplateView):
     template_name = 'graf/doughnut.html'
 
