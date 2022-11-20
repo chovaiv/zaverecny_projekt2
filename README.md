@@ -1,5 +1,5 @@
-Jméno grafu do proměné
 místo base dát main
+model pro jméno grafu??? 
 
 base: navbar
 main: seřadit, obrázky
