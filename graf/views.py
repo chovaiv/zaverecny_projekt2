@@ -43,7 +43,6 @@ def upravit(request, id):
   }
   return HttpResponseRedirect(reverse('index'))
 
-  return HttpResponseRedirect(reverse('index'))
 def upravit_objekt(request, id):
   jmeno_objektu = request.POST['jmeno_objektu']
   pocet_objektu = request.POST['pocet_objektu']
